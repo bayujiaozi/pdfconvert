@@ -1,0 +1,52 @@
+import pytesseract
+from pdf2image import convert_from_path
+
+curr_path="haha.pdf"
+pages = convert_from_path(curr_path, first_page=2, last_page=2, dpi=500)
+for pageNum,imgBlob in enumerate(pages):
+    text = pytesseract.image_to_string(imgBlob,lang='eng')
+    with open(f'{curr_path}_page{pageNum}.txt', 'w', encoding='utf-8') as the_file:
+        the_file.write(text)
+
+
+import fitz
+path = r"haha.pdf"
+doc = fitz.open(path)
+text=''
+for page_num in range(doc.page_count):
+    page = doc[page_num]
+    text += page.get_text()
+with open(r'fitz.txt', 'w', encoding='utf-8') as f:
+    f.write(text)
+
+import PyPDF2
+def pdf_to_text(input_path, output_path):
+    with open(input_path, 'rb') as pdf_file:
+        pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+        text = ''
+        for page_num in range(pdf_reader.numPages):
+            page = pdf_reader.getPage(page_num)
+            text += page.extractText()
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(text)
+# Usage example:
+input_pdf = r"haha.pdf"
+output_txt = r"PyPDF2.txt"
+
+pdf_to_text(input_pdf, output_txt)
+
+
+import pdfplumber
+def pdf_to_text(input_path, output_path):
+    with pdfplumber.open (input_path) as pdf:
+        text = ''
+        for page in pdf.pages:
+            text += page.extract_text()
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(text)
+# Usage example:
+input_pdf = r"haha.pdf"
+output_txt = r"pdfplumber.txt"
+
+pdf_to_text(input_pdf, output_txt)
