@@ -8,7 +8,7 @@ for pageNum,imgBlob in enumerate(pages):
     with open(f'{curr_path}_page{pageNum}.txt', 'w', encoding='utf-8') as the_file:
         the_file.write(text)
 
-
+#Best
 import fitz
 path = r"haha.pdf"
 doc = fitz.open(path)
@@ -19,6 +19,7 @@ for page_num in range(doc.page_count):
 with open(r'fitz.txt', 'w', encoding='utf-8') as f:
     f.write(text)
 
+#无空格
 import PyPDF2
 def pdf_to_text(input_path, output_path):
     with open(input_path, 'rb') as pdf_file:
@@ -36,7 +37,7 @@ output_txt = r"PyPDF2.txt"
 
 pdf_to_text(input_pdf, output_txt)
 
-
+#跳行
 import pdfplumber
 def pdf_to_text(input_path, output_path):
     with pdfplumber.open (input_path) as pdf:
