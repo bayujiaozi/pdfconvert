@@ -1,0 +1,9 @@
+import fitz
+path = r"haha.pdf"
+doc = fitz.open(path)
+text=''
+for page_num in range(doc.page_count):
+    page = doc[page_num]
+    text += page.get_text()
+with open(r'fitz.txt', 'w', encoding='utf-8') as f:
+    f.write(text)
