@@ -1,0 +1,18 @@
+def find_closing_parenthesis_after(text, starting_index):
+    for i in range(starting_index, len(text)):
+        if text[i] == ')':
+            return i
+    return -1
+
+# Example usage
+parsedstr = "hello( This is a sample text with (nested) parentheses) "
+starting_index = parsedstr.find("hello(")
+
+if starting_index != -1:
+    closing_parenthesis_index = find_closing_parenthesis_after(parsedstr, starting_index)
+    if closing_parenthesis_index != -1:
+        print(f"The first ')' after starting index {starting_index} is at index {closing_parenthesis_index}.")
+    else:
+        print(f"No ')' found after starting index {starting_index}.")
+else:
+    print("Starting index 'hello(' not found in the text.")
